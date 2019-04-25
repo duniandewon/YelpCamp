@@ -3,7 +3,8 @@ const express       = require('express'),
       bodyparser    = require('body-parser'),
       port          = 3000,
       mongoose      = require('mongoose'),
-      Campground    = require('./models/campground');
+      Campground    = require('./models/campground')
+      Comment       = require('./models/comments');;
       
 const seedDB        = require('./seeds');
 
@@ -74,6 +75,26 @@ app.get('/campgrounds/:id/comments/new', function (req, res){
         if(err) console.log(err);
         res.render('comments/new', {campground: campground});
     });
+});
+
+app.post('/campgrounds/:id/comments', function(req, res){
+    // lookup campground using ID which is inside req.prams.id
+    Campground.findById(req.params.id, function(err, campground){
+        if(err) res.redirect('/campgrounds');
+        // Create new comment
+        Comment.create(req.body.comment, function(err, comment){
+            if(err) console.log(err);
+
+            campground.comments.push(comment);
+            campground.save();
+            res.redirect('/campgrounds/' + campground._id);
+        });
+    });
+
+
+    // connect new comment to campground
+
+    // redirect to the show page of respective campground
 });
 
 app.listen(port, function(){
