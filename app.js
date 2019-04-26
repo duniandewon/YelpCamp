@@ -11,6 +11,7 @@ const seedDB        = require('./seeds');
 mongoose.connect('mongodb://localhost:27017/yelp_camp_v4', {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(bodyparser.urlencoded({extended: true}));
+app.use(express.static(__dirname + '/public'));
 // seedDB();
 
 // Root route (GET)
