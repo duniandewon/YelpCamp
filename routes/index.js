@@ -37,7 +37,7 @@ router.get('/login', function(req, res){
     res.render('login');
 });
 
-// User loge in
+// User log in
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/campgrounds',
     failureRedirect: "/login"
@@ -48,13 +48,8 @@ router.post('/login', passport.authenticate('local', {
 // Log out
 router.get('/logout', function(req, res){
     req.logOut();
+    req.flash('success', 'Loged out!');
     res.redirect('/campgrounds');
 });
-
-function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()) return next();
-
-    res.redirect('/login');
-}
 
 module.exports = router;
