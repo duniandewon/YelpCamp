@@ -10,13 +10,15 @@
                     <input type="text" name="campground[name]" class="form-control mb-3" value="<%= campground.name %>">
                     <input type="text" name="campground[image]" class="form-control mb-3" value="<%= campground.image %>">
                     <input type="text" name="campground[description]" class="form-control mb-3" value="<%= campground.description %>">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button class="btn btn-secondary btn-lg btn-block">Submit</button>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="/campgrounds/<%= campground._id %>" class="btn btn-info btn-lg btn-block" title="Go back">Cancel</a>
-                        </div>
+                    <input type="number" name="campground[price]" class="form-control mb-3" value="<%= campground.price %>" min="0.01" step="0.01">
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-secondary btn-lg btn-block">Submit</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-info btn-lg btn-block" title="Go back">Cancel</a>
                     </div>
                 </div>
             </form>
