@@ -16,10 +16,20 @@ const campgroundRoutes  = require('./routes/campgrounds'),
       indexRoutes       = require('./routes/index');
 
 // Connect to local Database
-// mongoose.connect('mongodb://localhost:27017/yelp_camp_v4', {useNewUrlParser: true});
+// mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true});
 
 // Connect to database on monggoDb atlas
-mongoose.connect('mongodb+srv://ndewon:Harahett41@cluster0-1pmu6.mongodb.net/yelpcamp?retryWrites=true', {
+// mongoose.connect('mongodb+srv://ndewon:Harahett41@cluster0-1pmu6.mongodb.net/yelpcamp?retryWrites=true', {
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+// }).then(() => {
+//     console.log('Connection succesful!!');
+// }).catch(err => {
+//     console.log("Error:", err.message);
+// });
+
+// Connect to database using environment variables
+mongoose.connect(process.env.DATABASEURL, {
     useNewUrlParser: true,
     useCreateIndex: true
 }).then(() => {
